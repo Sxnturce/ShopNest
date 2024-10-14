@@ -20,8 +20,7 @@ export class Products {
   }
 
   static createComment(req, res) {
-    const fecha = new Date().toISOString()
-    const result = validateComment({ ...req.body, fecha })
+    const result = validateComment(req.body)
 
     if (!result.success) {
       return res.status(400).json(JSON.parse(result.error.message))

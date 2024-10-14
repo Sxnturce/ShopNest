@@ -13,4 +13,5 @@ export type Product = {
 	descripcion: string;
 	imagen: string;
 	comentarios: Comment[];
+	quantity: number;
 };

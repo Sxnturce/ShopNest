@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import useCart from "../hooks/useCart.ts";
 import { StarIcon } from "@heroicons/react/24/outline";
 import { clientAxios } from "../helpers/AxiosClient.ts";
 import type { Product } from "../types/index.ts";
+import useComent from "../hooks/useComent.ts";
 import Coment from "../components/Comment.tsx";
 import Form from "../components/Form.tsx";
 
 export default function Product() {
+	const { coment, setComent, addComment } = useComent();
+	const { dispatch } = useCart();
 	const initialState = {
 		id: 0,
 		nombre: "",
@@ -14,11 +18,16 @@ export default function Product() {
 		descripcion: "",
 		imagen: "",
 		comentarios: [],
+		quantity: 1,
 	};
 
 	const [producto, setProduct] = useState<Product>(initialState);
 	const navigate = useNavigate();
 	const { id } = useParams();
+
+	useEffect(() => {
+		setComent(producto.comentarios);
+	}, [producto]);
 
 	useEffect(() => {
 		async function readProduct() {
@@ -32,7 +41,7 @@ export default function Product() {
 		readProduct();
 	}, []);
 
-	const isEmpty = producto.comentarios.length <= 0;
+	const isEmpty = coment.length <= 0;
 	return (
 		<>
 			<section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -66,7 +75,12 @@ export default function Product() {
 							error quas eligendi laboriosam consequuntur.
 						</p>
 					</div>
-					<button className="block bg-primary-color text-white font-bold rounded p-2 hover:bg-secondary-color transition-all ease-in-out">
+					<button
+						className="block bg-primary-color text-white font-bold rounded p-2 hover:bg-secondary-color transition-all ease-in-out"
+						onClick={() =>
+							dispatch({ type: "set-cart", payload: { cart: producto } })
+						}
+					>
 						Add to cart
 					</button>
 				</div>
@@ -78,9 +92,9 @@ export default function Product() {
 				{isEmpty ? (
 					<p className="text-xl text-gray-400">No hay ningun comentario</p>
 				) : (
-					producto.comentarios.map((p) => <Coment key={p.id} item={p} />)
+					coment.map((p, i) => <Coment key={i} item={p} />)
 				)}
-				<Form />
+				<Form id={producto.id} addComment={addComment} />
 			</section>
 		</>
 	);

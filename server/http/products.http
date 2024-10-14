@@ -8,7 +8,7 @@ GET {{url}}/shop/comment HTTP/1.1
 content-type: application/json
 
 {
-    "id":1
+  "id":1
 }
 
 ###Create comment
@@ -16,8 +16,8 @@ POST {{url}}/shop/comment HTTP/1.1
 content-type: application/json
 
 {
-    "id":1,
-    "nombre": "Sebastian",
-    "text": "Wed, 21 Oct 2015 18:27:50 GMT",
-    "raiting":5
+  "id":1,
+  "nombre": "Sebastian",
+  "text": "Wed, 21 Oct 2015 18:27:50 GMT",
+  "raiting":5
 }

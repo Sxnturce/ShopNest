@@ -1,4 +1,4 @@
-import { ZodDate, z } from "zod"
+import { z } from "zod"
 
 const date = new Date().getFullYear()
 
@@ -14,7 +14,7 @@ const comentSchemma = z.object({
   text: z.string({
     invalid_type_error: "Solo se aceptan textos en este campo."
   }).min(15),
-  raiting: z.number().min(1),
+  rating: z.number().min(1),
   fecha: z.string().datetime({ offset: true }).optional()
 })
 

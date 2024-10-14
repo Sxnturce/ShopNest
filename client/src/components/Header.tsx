@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useMemo } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Cart from "./CartContainer";
 import logo from "/logo-ecomerce.webp";
+import useCart from "../hooks/useCart";
 
 export default function Header() {
+	const { state } = useCart();
+	const cartQuantity = useMemo(() => state.cart.length, [state.cart]);
+
 	const [active, setActive] = useState(false);
 	return (
 		<>
@@ -28,8 +33,8 @@ export default function Header() {
 					</div>
 					<div className="relative" onClick={() => setActive(!active)}>
 						<ShoppingCartIcon className="text-primary-color w-8 h-8 cursor-pointer" />
-						<span className="absolute -top-1 -right-1 select-none bg-red-600 text-white rounded-full h-[1.1rem] w-[1.1rem] font-medium flex items-center justify-center">
-							0
+						<span className="absolute -top-1 -right-1 select-none bg-secondary-color text-white rounded-full h-[1.1rem] w-[1.1rem] font-medium flex items-center justify-center">
+							{cartQuantity}
 						</span>
 					</div>
 					{active && <Cart />}

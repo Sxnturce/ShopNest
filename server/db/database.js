@@ -5,10 +5,7 @@ export const db = [
     precio: 49.99,
     descripcion: 'Micrófono de alta calidad ideal para grabaciones profesionales, podcasts y videollamadas con un sonido nítido.',
     imagen: 'producto',
-    comentarios: [
-      { id: 1, nombre: 'SebastianSR', text: "Muy buena", fecha: "24/07/2024", rating: 5 },
-      { id: 2, nombre: "Genesis", text: "Muy mala", fecha: "24/07/2024", rating: 2 }
-    ]
+    comentarios: []
   },
   {
     id: 2,

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useMemo } from "react";
 import { Product } from "../types";
+import useCart from "../hooks/useCart.ts";
 
 type CardProp = {
 	item: Product;
@@ -8,6 +9,7 @@ type CardProp = {
 
 export default function Card({ item }: CardProp) {
 	const { id, nombre, precio, descripcion, imagen } = item;
+	const { dispatch } = useCart();
 	const lowerName = useMemo(() => nombre.toLocaleLowerCase(), [nombre]);
 
 	return (
@@ -31,7 +33,12 @@ export default function Card({ item }: CardProp) {
 						<p className="text-[#727272] text-sm">{descripcion}</p>
 					</div>
 					<div className="flex gap-2 items-center justify-between">
-						<button className="bg-primary-color text-[0.95rem] font-medium text-white px-2 py-[0.3rem] rounded hover:bg-secondary-color transition-all ease-in-out">
+						<button
+							className="bg-primary-color text-[0.95rem] font-medium text-white px-2 py-[0.3rem] rounded hover:bg-secondary-color transition-all ease-in-out"
+							onClick={() =>
+								dispatch({ type: "set-cart", payload: { cart: item } })
+							}
+						>
 							Add to cart
 						</button>
 						<span className="font-bold">S/ {precio}</span>

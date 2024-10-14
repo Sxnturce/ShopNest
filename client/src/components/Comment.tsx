@@ -1,5 +1,6 @@
 import type { Comment } from "../types";
 import Star from "./partialComment/Star";
+import DateF from "../helpers/DateF.ts";
 
 type CommentProp = {
 	item: Comment;
@@ -15,7 +16,7 @@ export default function Coment({ item }: CommentProp) {
 				</div>
 				<div className="flex items-center justify-between">
 					<p className="text-[0.98rem] text-gray-500">{text}</p>
-					<span>{fecha}</span>
+					<span>{DateF(fecha)}</span>
 				</div>
 			</div>
 		</>
