@@ -1,0 +1,23 @@
+@url=http://localhost:4000/api
+
+###Get all products
+GET {{url}}/shop/ HTTP/1.1
+
+###Get one product
+GET {{url}}/shop/comment HTTP/1.1
+content-type: application/json
+
+{
+    "id":1
+}
+
+###Create comment
+POST {{url}}/shop/comment HTTP/1.1
+content-type: application/json
+
+{
+    "id":1,
+    "nombre": "Sebastian",
+    "text": "Wed, 21 Oct 2015 18:27:50 GMT",
+    "raiting":5
+}
