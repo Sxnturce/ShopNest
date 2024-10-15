@@ -10,3 +10,73 @@
 	border-radius: 8px;
 	background: #9b9999;
 }
+
+.loader {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	display: block;
+	margin: 10rem auto 0 auto;
+	position: relative;
+	color: #6733ff;
+	box-sizing: border-box;
+	animation: animloader 1s linear infinite alternate;
+}
+
+@keyframes animloader {
+	0% {
+		box-shadow: -38px -6px, -14px 6px, 14px -6px;
+	}
+	33% {
+		box-shadow: -38px 6px, -14px -6px, 14px 6px;
+	}
+	66% {
+		box-shadow: -38px -6px, -14px 6px, 14px -6px;
+	}
+	100% {
+		box-shadow: -38px 6px, -14px -6px, 14px 6px;
+	}
+}
+
+.loader-form {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	display: block;
+	margin: 0 auto 1rem auto;
+	position: relative;
+	animation: rotate 1s linear infinite;
+}
+.loader-form::before {
+	content: "";
+	box-sizing: border-box;
+	position: absolute;
+	inset: 0px;
+	border-radius: 50%;
+	border: 5px solid #181818;
+	animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes prixClipFix {
+	0% {
+		clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+	}
+	25% {
+		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+	}
+	50% {
+		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+	}
+	75% {
+		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+	}
+	100% {
+		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+	}
+}

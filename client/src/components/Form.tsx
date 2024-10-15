@@ -9,6 +9,7 @@ type FormProp = {
 	addComment: (item: Comment) => void;
 };
 export default function Form({ id, addComment }: FormProp) {
+	const [spinner, setSpinner] = useState(false);
 	const initialValue = {
 		id: 0,
 		nombre: "",
@@ -71,15 +72,17 @@ export default function Form({ id, addComment }: FormProp) {
 				return;
 			}
 		}
-
+		setSpinner(true);
 		try {
 			await clientAxios.post("shop/comment", {
 				...result.data,
 			});
+			setSpinner(false);
 			addComment({ ...data, fecha: result.data?.fecha });
 			setData(initialValue);
 		} catch (e) {
 			console.log(e);
+			setSpinner(false);
 		}
 	}
 
@@ -143,6 +146,7 @@ export default function Form({ id, addComment }: FormProp) {
 						<p className="text-sm text-red-500">{err.errRating}</p>
 					)}
 				</div>
+				{spinner && <span className="loader-form w-5 h-5 block mt-10"></span>}
 				<input
 					type="submit"
 					value="Publicar comentario"

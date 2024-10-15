@@ -2,6 +2,16 @@ import type { Product } from "../types";
 
 const MAX_NUM = 10;
 const MIN_NUM = 1;
+
+function saveData() {
+	let saved: Product[] = [];
+	const query = localStorage.getItem("shop-cart");
+	if (query) {
+		saved = JSON.parse(query);
+	}
+	return saved;
+}
+
 export type cartActions =
 	| { type: "set-cart"; payload: { cart: Product } }
 	| { type: "increase-cart"; payload: { id: Product["id"] } }
@@ -14,7 +24,7 @@ export type StateProps = {
 };
 
 export const initialState: StateProps = {
-	cart: [],
+	cart: saveData(),
 };
 
 export const CartReducer = (
