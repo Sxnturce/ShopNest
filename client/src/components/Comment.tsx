@@ -14,9 +14,9 @@ export default function Coment({ item }: CommentProp) {
 					<h2 className="font-bold text-lg">{nombre}</h2>
 					<Star raiting={rating} />
 				</div>
-				<div className="flex items-center justify-between">
-					<p className="text-[0.98rem] text-gray-500">{text}</p>
-					<span>{DateF(fecha)}</span>
+				<div className="grid grid-cols-1 md:grid-cols-[minmax(0,3fr),1fr] gap-4">
+					<p className="text-[0.98rem] text-gray-500 break-words">{text}</p>
+					<span className="text-right">{DateF(fecha)}</span>
 				</div>
 			</div>
 		</>

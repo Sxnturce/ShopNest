@@ -7,7 +7,7 @@ import type { Product } from "../types/index.ts";
 import useComent from "../hooks/useComent.ts";
 import Coment from "../components/Comment.tsx";
 import Form from "../components/Form.tsx";
-import placeH from "/product-placeholder.jpg";
+import placeH from "/placeholder.png";
 
 export default function Product() {
 	const [load, setLoad] = useState(true);

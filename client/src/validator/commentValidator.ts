@@ -21,7 +21,8 @@ const comentSchemma = z.object({
 		})
 		.min(15, {
 			message: "Como minimo son 15 caracteres.",
-		}),
+		})
+		.max(100, { message: "Son 50 caracteres como maximo." }),
 	rating: z.number().min(1, {
 		message: "Este campo es obligatorio.",
 	}),
