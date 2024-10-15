@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { Raiting } from "../data/Raiting.js";
 import type { Comment } from "../types/index.js";
 import { validateComment } from "../validator/commentValidator.ts";
@@ -27,6 +27,14 @@ export default function Form({ id, addComment }: FormProp) {
 	const [err, setErr] = useState(errors);
 	const [data, setData] = useState<Comment>(initialValue);
 
+	useEffect(() => {
+		setErr({
+			errNombre: "",
+			errText: "",
+			errRating: "",
+		});
+	}, [data.nombre, data.rating, data.text]);
+
 	function handleChange(e: ChangeEvent<HTMLInputElement>) {
 		const result = e.target.name.includes("rating");
 
@@ -34,12 +42,6 @@ export default function Form({ id, addComment }: FormProp) {
 			...data,
 			id: id,
 			[e.target.id]: result ? +e.target.value : e.target.value,
-		});
-
-		setErr({
-			errNombre: "",
-			errText: "",
-			errRating: "",
 		});
 	}
 
@@ -52,7 +54,7 @@ export default function Form({ id, addComment }: FormProp) {
 		const result = validateComment({
 			...data,
 			nombre: data.nombre.trim(),
-			text: data.nombre.trim(),
+			text: data.text.trim(),
 			fecha: new Date().toISOString(),
 		});
 

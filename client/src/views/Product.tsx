@@ -7,6 +7,7 @@ import type { Product } from "../types/index.ts";
 import useComent from "../hooks/useComent.ts";
 import Coment from "../components/Comment.tsx";
 import Form from "../components/Form.tsx";
+import placeH from "/product-placeholder.jpg";
 
 export default function Product() {
 	const [load, setLoad] = useState(true);
@@ -54,8 +55,12 @@ export default function Product() {
 					<section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 						<div className="flex items-center justify-center">
 							<img
-								className="w-full max-w-[350px]"
-								src={`/img/${producto.imagen}-${producto.id}.webp`}
+								className="w-full max-w-[350px] aspect-auto"
+								src={
+									producto.imagen
+										? `/img/${producto.imagen}-${producto.id}.webp`
+										: placeH
+								}
 								alt={`${producto.nombre.toLocaleLowerCase()}`}
 							/>
 						</div>
