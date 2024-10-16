@@ -10,7 +10,9 @@ import Form from "../components/Form.tsx";
 import placeH from "/placeholder.png";
 
 export default function Product() {
-	const [load, setLoad] = useState(true);
+	const navigate = useNavigate();
+	const { id } = useParams();
+	const [load, setLoad] = useState(false);
 	const { coment, setComent, addComment } = useComent();
 	const { dispatch } = useCart();
 	const initialState = {
@@ -24,8 +26,6 @@ export default function Product() {
 	};
 
 	const [producto, setProduct] = useState<Product>(initialState);
-	const navigate = useNavigate();
-	const { id } = useParams();
 
 	useEffect(() => {
 		setComent(producto.comentarios);
