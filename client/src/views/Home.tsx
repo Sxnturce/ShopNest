@@ -12,8 +12,8 @@ export default function Home() {
 		}
 		return arr;
 	}
-	const [storage] = useState<Product[]>(saved());
-	const [products, setProducts] = useState<Product[]>();
+
+	const [products, setProducts] = useState<Product[]>(saved());
 
 	useEffect(() => {
 		async function readData() {
@@ -33,11 +33,11 @@ export default function Home() {
 
 	return (
 		<>
-			{storage.length === 0 ? (
+			{products.length === 0 ? (
 				<span className="loader w-5 h-5 block mt-10"></span>
 			) : (
 				<section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-					{storage.map((product) => (
+					{products.map((product) => (
 						<Card key={product.id} item={product} />
 					))}
 				</section>
