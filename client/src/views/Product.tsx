@@ -49,7 +49,7 @@ export default function Product() {
 	return (
 		<>
 			{!load ? (
-				<span className="loader w-5 h-5 block mt-10"></span>
+				<div className="w-12 h-12 border-4 border-t-blue-500 border-gray-300 rounded-full animate-spin block mx-auto"></div>
 			) : (
 				<>
 					<section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
