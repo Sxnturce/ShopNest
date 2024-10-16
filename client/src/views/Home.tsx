@@ -13,7 +13,7 @@ export default function Home() {
 		return arr;
 	}
 
-	const [products, setProducts] = useState<Product[]>(saved);
+	const [products, setProducts] = useState<Product[]>(saved());
 
 	useEffect(() => {
 		async function readData() {
